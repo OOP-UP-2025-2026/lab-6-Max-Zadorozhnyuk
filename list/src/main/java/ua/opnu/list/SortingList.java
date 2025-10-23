@@ -128,9 +128,28 @@ public class SortingList extends Application {
             }
         });
 
-        // TODO: Обробка натискання на кнопку "Сортувати за прізвищем"
+        // Для запам’ятовування напрямку сортування кожної кнопки окремо
+        final boolean[] nameOrder = {true};
+        final boolean[] lastNameOrder = {true};
+        final boolean[] markOrder = {true};
 
-        // TODO: Обробка натискання на кнопку "Сортувати за оцінкою"
+        // Сортування за ім'ям
+        sortByNameButton.setOnAction(event -> {
+            students.sort(new NameSorter(nameOrder[0]));
+            nameOrder[0] = !nameOrder[0];
+        });
+
+        // Сортування за прізвищем
+        sortByLastNameButton.setOnAction(event -> {
+            students.sort(new LastNameSorter(lastNameOrder[0]));
+            lastNameOrder[0] = !lastNameOrder[0];
+        });
+
+        // Сортування за середнім балом
+        sortByMarkButton.setOnAction(event -> {
+            students.sort(new MarkSorter(markOrder[0]));
+            markOrder[0] = !markOrder[0];
+        });
 
         // Створюємо горизонтальний ряд
         HBox hb = new HBox();
